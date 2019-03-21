@@ -1,0 +1,44 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/TestNgWebApp/dist
+/TestNgWebApp/dist-server
+/TestNgWebApp/tmp
+/TestNgWebApp/out-tsc
+
+# dependencies
+/TestNgWebApp/node_modules
+
+# IDEs and editors
+/TestNgWebApp/.idea
+/TestNgWebApp/.project
+/TestNgWebApp/.classpath
+/TestNgWebApp/.c9/
+/TestNgWebApp/*.launch
+/TestNgWebApp/.settings/
+/TestNgWebApp/*.sublime-workspace
+
+# IDE - VSCode
+/TestNgWebApp/.vscode/*
+/TestNgWebApp/!.vscode/settings.json
+/TestNgWebApp/!.vscode/tasks.json
+/TestNgWebApp/!.vscode/launch.json
+/TestNgWebApp/!.vscode/extensions.json
+
+# misc
+/TestNgWebApp/.sass-cache
+/TestNgWebApp/connect.lock
+/TestNgWebApp/coverage
+/TestNgWebApp/libpeerconnection.log
+/TestNgWebApp/npm-debug.log
+/TestNgWebApp/yarn-error.log
+/TestNgWebApp/testem.log
+/TestNgWebApp/typings
+
+# e2e
+/TestNgWebApp/e2e/*.js
+/TestNgWebApp/e2e/*.map
+
+# System Files
+/TestNgWebApp/.DS_Store
+/TestNgWebApp/Thumbs.db
