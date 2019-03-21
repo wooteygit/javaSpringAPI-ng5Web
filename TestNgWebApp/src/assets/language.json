@@ -1,0 +1,5 @@
+{
+    "user": { "TH": "ชื่อเข้าใช้งาน", "ENG": "User name" },
+    "password": { "TH": "รหัสผ่าน", "ENG": "Password" },
+    "login": { "TH": "เข้าสู่ระบบ", "ENG": "Login" }
+}

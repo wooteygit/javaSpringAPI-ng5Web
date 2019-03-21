@@ -1,0 +1,4 @@
+<div class="form-group">
+    <label for="text">{{label}}</label>
+    <input type="text" class="form-control" [(ngModel)]="value" (ngModelChange)="updateChanges()" [placeholder]="placeholder" (change)="keyChange($event)" [readonly]="readonly" [maxlength]="maxlength" [required]="isRequest">
+</div>
