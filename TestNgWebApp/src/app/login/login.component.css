@@ -1,24 +1,5 @@
 @import "../styles/placeholder.amin.css";
 @import "../styles/them-color.css";
-.content {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    padding: 10px 0;
-    align-items: center;
-    justify-content: space-around;
-    display: flex;
-    background-color: #eee;
-    /* float: none; */
-}
-
-.container {
+.layout-login {
     width: 500px;
-    height: 270px;
-    padding: 0px 20px 0px 20px;
-    margin: 10px;
-    border-radius: 6px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
