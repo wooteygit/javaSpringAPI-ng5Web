@@ -1,23 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, KeyValueDiffers } from '@angular/core';
 
 @Injectable()
 export class StorageService {
 
   constructor() { }
 
-  set(keyName: string, key: string){
-    localStorage.setItem(key, key);
+  set(keyName: string, key: string) {
+    localStorage.setItem(keyName, key);
   }
 
-  get(keyName: string){
-    return new Promise((resolve, reject) => {
-      let key = localStorage.getItem(keyName);
-      if(key){
-        resolve(key);
-      }else{
-        reject("Can't get key from storage");
-      }
-    });
+  get(keyName: string) {
+    const key =  localStorage.getItem(keyName);
+    return key;
   }
 
   remove(keyName: string){

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../shared-services/authentication.service';
+import { HttpxService } from '../shared-services/httpx.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
     Password: ''
   };
 
-  constructor(public auth: AuthenticationService, private router: Router) { }
+  constructor(public auth: HttpxService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -22,13 +22,14 @@ export class LoginComponent implements OnInit {
   doLogin(){
     if(this.userLogin.userName && this.userLogin.Password){
       this.auth.authentication('/auth', this.userLogin)
-      .then((res)=>{
-        if(res == 1)
+      .then((res) => {
+        if(res == 1) {
           this.router.navigate(['/home']);
-      }).catch((err)=>{
+        }
+      }).catch((err) => {
         console.error(err.toString());
       });
-    }else{
+    } else {
       console.error('กรุณาระบุ ชื่อเข้าใช้งานหรือหรัสผ่าน');
     }
 
