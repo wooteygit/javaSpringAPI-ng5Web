@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpxService } from '../shared-services/httpx.service';
+import { ExceptionModel } from '../shared-models/exception.model';
 
 @Component({
   selector: 'app-login',
@@ -20,18 +21,30 @@ export class LoginComponent implements OnInit {
   }
 
   doLogin(){
-    if(this.userLogin.userName && this.userLogin.Password){
-      this.auth.authentication('/auth', this.userLogin)
-      .then((res) => {
-        if(res == 1) {
-          this.router.navigate(['/home']);
-        }
-      }).catch((err) => {
-        console.error(err.toString());
-      });
-    } else {
-      console.error('กรุณาระบุ ชื่อเข้าใช้งานหรือหรัสผ่าน');
+    try{
+      if(this.userLogin.userName && this.userLogin.Password){
+        this.auth.authentication('/auth', this.userLogin)
+        .then((res) => {
+          if(res == 1) {
+            this.router.navigate(['/home']);
+          }
+        }).catch((err) => {
+          console.error(err);
+          if(err  instanceof  ExceptionModel){
+            if(err.ErrorCode == 401){
+
+            }
+          }
+        });
+      } else {
+        console.error('กรุณาระบุ ชื่อเข้าใช้งานหรือหรัสผ่าน');
+      }
+    }catch(error){
+      if(error  instanceof  ExceptionModel){
+
+      }
     }
+
 
   }
 

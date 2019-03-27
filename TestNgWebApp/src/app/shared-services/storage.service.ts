@@ -1,4 +1,5 @@
 import { Injectable, KeyValueDiffers } from '@angular/core';
+import { ExceptionModel } from '../shared-models/exception.model';
 
 @Injectable()
 export class StorageService {
@@ -10,7 +11,10 @@ export class StorageService {
   }
 
   get(keyName: string) {
-    const key =  localStorage.getItem(keyName);
+    const key = localStorage.getItem(keyName);
+    if(!key){
+      throw new ExceptionModel(401, 'Auth_key not fount', null);
+    }
     return key;
   }
 
