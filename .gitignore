@@ -42,3 +42,36 @@
 # System Files
 /TestNgWebApp/.DS_Store
 /TestNgWebApp/Thumbs.db
+
+
+# API ----------------------------------------------------------------------------------
+/javaspringbootapi/HELP.md
+/javaspringbootapi/target/
+/javaspringbootapi/!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+/javaspringbootapi/.apt_generated
+/javaspringbootapi/.classpath
+/javaspringbootapi/.factorypath
+/javaspringbootapi/.project
+/javaspringbootapi/.settings
+/javaspringbootapi/.springBeans
+/javaspringbootapi/.sts4-cache
+
+### IntelliJ IDEA ###
+/javaspringbootapi/.idea
+/javaspringbootapi/*.iws
+/javaspringbootapi/*.iml
+/javaspringbootapi/*.ipr
+
+### NetBeans ###
+/javaspringbootapi/nbproject/private/
+/javaspringbootapi/nbbuild/
+/javaspringbootapi/dist/
+/javaspringbootapi/nbdist/
+/javaspringbootapi/.nb-gradle/
+/javaspringbootapi/build/
+
+### VS Code ###
+/javaspringbootapi/.vscode/
+
