@@ -5,10 +5,13 @@
  */
 package com.javaspringbootapi.controllers;
         
+import com.javaspringbootapi.InstanceApp;
+import com.javaspringbootapi.manager.AuthenticationManager;
 import com.javaspringbootapi.models.AuthenticationModel;       
 import com.javaspringbootapi.models.OutputModel;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,18 +22,22 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author senateideapad320-1
  */
+@CrossOrigin
 @RestController
 @EnableAutoConfiguration        
 public class AuthenticationController {
     
-    @RequestMapping(method = RequestMethod.POST, value="/auth", produces = "application/json; charset=UTF-8")
+    @RequestMapping(method = RequestMethod.POST, value="/auth", produces = "application/json;")
     @ResponseBody
     public OutputModel Authentication(@RequestBody AuthenticationModel auth){
-        OutputModel output = new OutputModel();
+        OutputModel output;
+        int retcode = InstanceApp.UNKNOWN;
         try{
-            output = new OutputModel();
+            output = AuthenticationManager.I().CheckLogin(auth);
         }catch(Exception ex){
             output = new OutputModel();
+            output.setErrorCode(retcode);
+            output.setErrorMsg(ex.getMessage());
         }
         return output;
     }

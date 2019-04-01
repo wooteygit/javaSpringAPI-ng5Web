@@ -1,3 +1,32 @@
+@import "./styles/them-color.css";
+
 .text-center {
     text-align: center;
+}
+
+.header {
+  background-color: #f1f1f1;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 2px;
+  text-align: end;
+}
+
+#navbar {
+  overflow: hidden;
+  background-color: #333;
+  color: red;
+}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 3000;
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
 }

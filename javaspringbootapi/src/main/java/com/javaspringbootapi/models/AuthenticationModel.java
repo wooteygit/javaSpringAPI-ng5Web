@@ -10,24 +10,25 @@ package com.javaspringbootapi.models;
  * @author senateideapad320-1
  */
 public class AuthenticationModel {
-    private String Username;
-    private String Password;
+    private String userName;
+    private String password;
 
-    public String getUsername() {
-        return Username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String Username) {
-        this.Username = Username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
-    public void setPassword(String Password) {
-        this.Password = Password;
+    public void setPassword(String password) {
+        this.password = password;
     }
+
     
     
 }

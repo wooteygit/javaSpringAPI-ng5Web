@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,6 +30,19 @@ public class AppSetingController {
         String html = "";
         try{
             return auth_key;
+        }
+        catch(Exception ex){
+            return ex.getMessage();
+        }
+    }
+    
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET, value="/version", produces = "text/html; charset=UTF-8")
+    @ResponseBody
+    public String version() {
+        String html = "";
+        try{
+            return "1.0.0";
         }
         catch(Exception ex){
             return ex.getMessage();

@@ -1,4 +1,4 @@
 
-export class ExceptionModel {
-  constructor(public ErrorCode: number, public ErrorMng: string, public TransactionData: any){}
+export class ExceptionModel{
+  constructor(public errorCode: number, public errorMsg: string, public transactionData: any){}
 }

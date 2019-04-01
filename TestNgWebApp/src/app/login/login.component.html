@@ -7,17 +7,17 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <app-textbox [label]="'ชื่อเข้าใช้งาน'" [placeholder]="'ชื่อเข้าใช้งาน'"></app-textbox>
+                <app-textbox [(ngModel)]="userLogin.userName" [label]="'ชื่อเข้าใช้งาน'" [placeholder]="'ชื่อเข้าใช้งาน'"></app-textbox>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <app-password [label]="'รหัสผ่าน'" [placeholder]="'รหัสผ่าน'"></app-password>
+                <app-password [(ngModel)]="userLogin.password" [label]="'รหัสผ่าน'" [placeholder]="'รหัสผ่าน'"></app-password>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-              <app-button [label]="'เข้าสู่ระบบ'"></app-button>
+              <app-button [label]="'เข้าสู่ระบบ'" (click)="doLogin()"></app-button>
             </div>
         </div>
     </div>
