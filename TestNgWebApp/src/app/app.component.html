@@ -1,4 +1,4 @@
-<div class="main" cdkScrollable>
+<div class="main" #mainBody>
   <div class="header" *ngIf="!isLogin">
     <h2>Scroll Down</h2>
     <button class="non-bg" (click)="gotoNewPage(1)">เข้าสู่ระบบ</button><label>|</label><button class="non-bg" (click)="gotoNewPage(2)">สมัครสมาชิก</button>
@@ -10,8 +10,11 @@
         <span>Right Aligned Text</span>
     </mat-toolbar>
   </div>
-  <div class="content-body">
-    <router-outlet></router-outlet>
+  <div #tempHeader>
+
+  </div>
+  <div class="content-body" #contentBody>
+    <router-outlet ></router-outlet>
   </div>
 </div>
 

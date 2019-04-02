@@ -10,20 +10,17 @@ import { Router, Event, NavigationStart } from '@angular/router';
 export class AppComponent implements OnInit {
 
   @ViewChild('navbar') navbar: ElementRef;
+  @ViewChild('contentBody') contentBody: ElementRef;
+  @ViewChild('mainBody') mainBody: ElementRef;
+  @ViewChild('tempHeader') tempHeader: ElementRef;
+
+
   title = 'app';
   sticky: any;
   isLogin: boolean = false;
 
   constructor(private scrollDispatcher: ScrollDispatcher, private router: Router) {
-    this.router.events.subscribe((event: Event)=>{
-      if (event instanceof NavigationStart) {
-        if(event.url == '/login'){
-          this.isLogin = true;
-        }else{
-          this.isLogin = false;
-        }
-      }
-    });
+
   }
 
   ngOnInit(): void{}
@@ -34,11 +31,26 @@ export class AppComponent implements OnInit {
       if(this.sticky) {
         if(window.pageYOffset >= this.sticky){
           this.navbar.nativeElement.classList.add('sticky');
+          this.mainBody.nativeElement.classList.add('xxx');
+          this.tempHeader.nativeElement.classList.add('vvv');
         } else {
           this.navbar.nativeElement.classList.remove('sticky');
+          this.mainBody.nativeElement.classList.remove('xxx');
+          this.tempHeader.nativeElement.classList.remove('vvv');
         }
       }
     });
+
+    this.router.events.subscribe((event: Event)=>{
+      if (event instanceof NavigationStart) {
+        if(event.url == '/login'){
+          this.isLogin = true;
+        }else{
+          this.isLogin = false;
+        }
+      }
+    });
+
   }
 
   gotoNewPage(p: number){

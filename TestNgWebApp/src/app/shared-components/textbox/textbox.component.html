@@ -1,9 +1,4 @@
-<!-- <div class="form-group">
-    <label for="text">{{label}}</label>
-    <input type="text" class="form-control" [(ngModel)]="value" (ngModelChange)="updateChanges()" [placeholder]="placeholder" (change)="keyChange($event)" [readonly]="readonly" [maxlength]="maxlength" [required]="isRequest">
-</div> -->
-<div class="row">
-  <div class="col-md-5 text-end "><label class="form-control non-bg" for="text">{{label}}</label></div>
-  <div class="col-md-6"><input type="text" class="form-control" [(ngModel)]="value" (ngModelChange)="updateChanges()" [placeholder]="placeholder" (change)="keyChange($event)" [readonly]="readonly" [maxlength]="maxlength" [required]="isRequest"></div>
-  <div class="col-md-1"></div>
+<div class="row row-space">
+  <div class="col-md-5 text-end "><input type="text" class="form-control non-bg text-end" value="{{label+' : '}}"></div>
+  <div class="col-md-7"><input type="text" class="form-control control" [(ngModel)]="value" (ngModelChange)="updateChanges()" [placeholder]="placeholder" (change)="keyChange($event)" [readonly]="readonly" [maxlength]="maxlength" [required]="isRequest"></div>
 </div>

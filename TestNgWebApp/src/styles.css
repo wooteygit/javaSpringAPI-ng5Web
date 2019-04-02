@@ -12,12 +12,22 @@ html {
     background: #FF0000;
 }
 
-.content {
+.content-login {
     position: absolute;
     width: 100%;
     height: 100%;
     padding: 10px 0;
     align-items: center;
+    justify-content: space-around;
+    display: flex;
+    background-color: #eee;
+    float: none;
+}
+
+.content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     justify-content: space-around;
     display: flex;
     background-color: #eee;
@@ -45,6 +55,10 @@ html {
 
 .text-end {
     text-align: end;
+}
+
+.form-control{
+	padding: 20px 6px !important;
 }
 
 
