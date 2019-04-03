@@ -31,12 +31,8 @@ export class AppComponent implements OnInit {
       if(this.sticky) {
         if(window.pageYOffset >= this.sticky){
           this.navbar.nativeElement.classList.add('sticky');
-          this.mainBody.nativeElement.classList.add('xxx');
-          this.tempHeader.nativeElement.classList.add('vvv');
         } else {
           this.navbar.nativeElement.classList.remove('sticky');
-          this.mainBody.nativeElement.classList.remove('xxx');
-          this.tempHeader.nativeElement.classList.remove('vvv');
         }
       }
     });
