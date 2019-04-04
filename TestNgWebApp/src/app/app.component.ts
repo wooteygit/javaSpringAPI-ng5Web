@@ -12,18 +12,26 @@ export class AppComponent implements OnInit {
   @ViewChild('navbar') navbar: ElementRef;
   @ViewChild('contentBody') contentBody: ElementRef;
   @ViewChild('mainBody') mainBody: ElementRef;
-  @ViewChild('tempHeader') tempHeader: ElementRef;
-
 
   title = 'app';
   sticky: any;
   isLogin: boolean = false;
 
   constructor(private scrollDispatcher: ScrollDispatcher, private router: Router) {
-
+    
   }
 
-  ngOnInit(): void{}
+  ngOnInit(): void{
+    this.router.events.subscribe((event: Event)=>{
+      if (event instanceof NavigationStart) {
+        if(event.url == '/login'){
+          this.isLogin = false;
+        }else{
+          this.isLogin = true;
+        }
+      }
+    });
+  }
 
   ngAfterViewInit(): void{
     this.sticky = this.navbar.nativeElement.offsetTop;
@@ -37,15 +45,7 @@ export class AppComponent implements OnInit {
       }
     });
 
-    this.router.events.subscribe((event: Event)=>{
-      if (event instanceof NavigationStart) {
-        if(event.url == '/login'){
-          this.isLogin = true;
-        }else{
-          this.isLogin = false;
-        }
-      }
-    });
+    
 
   }
 
