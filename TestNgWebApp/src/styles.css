@@ -1,12 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* @font-face {
+  font-family: "FontAwesome";
+  src: url("/assets/fonts/FontAwesome.ttf#FontAwesome") format("truetype");
+} */
+
 html {
     overflow: scroll;
     overflow-x: hidden;
 }
 ::-webkit-scrollbar {
-    width: 0px;  
-    background: transparent;  
+    width: 0px;
+    background: transparent;
 }
 ::-webkit-scrollbar-thumb {
     background: #FF0000;
@@ -18,16 +24,6 @@ html {
     height: 100%;
     padding: 10px 0;
     align-items: center;
-    justify-content: space-around;
-    display: flex;
-    background-color: #eee;
-    float: none;
-}
-
-.content {
-    position: absolute;
-    width: 100%;
-    height: 100%;
     justify-content: space-around;
     display: flex;
     background-color: #eee;
@@ -48,7 +44,7 @@ html {
     background-repeat:no-repeat !important;
     border: none !important;
     cursor:pointer !important;
-    overflow: hidden !important; 
+    overflow: hidden !important;
     outline:none !important;
 	-webkit-box-shadow: none !important;
 }
@@ -61,4 +57,48 @@ html {
 	padding: 20px 6px !important;
 }
 
+.content {
+  /* position: absolute; */
+  width: 100%;
+  /* height: 100%;
+  justify-content: space-around;
+  display: flex; */
+  background-color: #eee;
+  /* float: none; */
+  padding-top: 40px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* @media screen and (min-width: 769px) {
+  .content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    display: flex;
+    background-color: #eee;
+    float: none;
+    padding-top: 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    display: flex;
+    background-color: #eee;
+    float: none;
+    padding-top: 40px;
+  }
+
+  .container{
+    width: 100%;
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+  }
+} */
 

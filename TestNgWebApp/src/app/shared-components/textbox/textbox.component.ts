@@ -1,5 +1,6 @@
 import { Component, OnInit, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { CenterService } from '../../shared-services/center.service';
 
 @Component({
   selector: 'app-textbox',
@@ -15,12 +16,14 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class TextboxComponent implements OnInit, ControlValueAccessor {
   value: any;
 
+  @Input() ctrID: string;
   @Input() label: string = 'Text';
   @Input() placeholder: string = 'Text';
   @Input() required: boolean = true;
   @Input() strRequest: string = 'Please input';
   @Input() readonly: boolean = false;
   @Input() maxlength: number = 255;
+  @Input() validate: {invalid: boolean, msg: string};
 
   isRequest: boolean;
   /**
@@ -34,7 +37,7 @@ export class TextboxComponent implements OnInit, ControlValueAccessor {
    */
   onTouched: () => void = () => {};
 
-  constructor() {}
+  constructor(public center: CenterService) {}
 
   ngOnInit() {
     if(this.required == true || this.required == false)

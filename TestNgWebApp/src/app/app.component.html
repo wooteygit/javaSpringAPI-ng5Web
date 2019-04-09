@@ -1,11 +1,15 @@
 <div class="main" #mainBody>
-    <div class="header" *ngIf="isLogin">
+    <div class="header">
         <h2>Scroll Down</h2>
-        <button class="non-bg" (click)="gotoNewPage(1)">เข้าสู่ระบบ</button><label>|</label><button class="non-bg" (click)="gotoNewPage(2)">สมัครสมาชิก</button>
+        <button class="non-bg" (click)="gotoNewPage(1)">เข้าสู่ระบบ</button>
+        <label>|</label>
+        <button class="non-bg" (click)="gotoNewPage(2)">สมัครสมาชิก</button>
+        <label>|</label>
+        <button class="non-bg" (click)="gotoNewPage(3)">ออกจากระบบ</button>
     </div>
-    <div *ngIf="isLogin" #navbar>
+    <div #navbar>
         <mat-toolbar class="them-color text-color-white">
-            <span>Application Title</span>
+            <span>{{center.getTitle}}</span>
             <span class="fill-remaining-space"></span>
             <span>Right Aligned Text</span>
         </mat-toolbar>

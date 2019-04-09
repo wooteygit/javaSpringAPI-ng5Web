@@ -1,17 +1,107 @@
-<div class="content">
-    <div class="container">
-        <app-textbox [label]="'เบอร์โทรศัพท์'" [placeholder]="'เบอร์โทรศัพท์'"></app-textbox>
-        <app-textbox [label]="'รหัสผ่าน'" [placeholder]="'รหัสผ่าน'"></app-textbox>
-        <app-textbox [label]="'ชื่อ'" [placeholder]="'ชื่อ'"></app-textbox>
-        <app-textbox [label]="'นามสกุล'" [placeholder]="'นามสกุล'"></app-textbox>
-        <app-textbox [label]="'วันเกิด'" [placeholder]="'วันเกิด'"></app-textbox>
-        <app-textbox [label]="'อายุ'" [placeholder]="'อายุ'"></app-textbox>
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <app-button class="btn-normal"></app-button>
-            </div>
-            <div class="col-md-3"></div>
-        </div>
-    </div>
-</div>
+<!-- <div class="container"> -->
+ <!--  <div class="container vv"> -->
+    <div class="row content">
+      <div class="col-md-7">
+        5555555
+      </div>
+      <div class="col-md-5">
+          <form [formGroup]="registerForm">
+              <app-textbox
+                [ctrID]="mobile"
+                [(ngModel)]="usr.mobile"
+                formControlName="mobile" [label]="'เบอร์โทรศัพท์'"
+                [placeholder]="'เบอร์โทรศัพท์'"
+                [validate]="{
+                  invalid: (registerForm.controls.mobile.invalid && usr.mobile),
+                  msg: 'กรุณาระบุเบอร์โทรศัพท์ให้ถูกต้องเช่น 0860914910'
+                }"
+              ></app-textbox>
+              <div class="row">
+                <div class="col-md-6">
+                  <app-textbox
+                    [(ngModel)]="usr.password"
+                    formControlName="password"
+                    [label]="'รหัสผ่าน'"
+                    [placeholder]="'รหัสผ่าน'"
+                    [validate]="{
+                      invalid: (registerForm.controls.password.invalid && usr.password),
+                      msg: 'กรุณาระบุรหัสผ่าน'
+                    }"
+                  ></app-textbox>
+                </div>
+                <div class="col-md-6">
+                  <app-textbox
+                    [(ngModel)]="confirmPassword"
+                    formControlName="confirmPassword"
+                    [label]="'ยืนยันรหัสผ่าน'"
+                    [placeholder]="'ยืนยันรหัสผ่าน'"
+                    [validate]="{
+                      invalid: (registerForm.controls.confirmPassword.invalid && confirmPassword && (confirmPassword != usr.password)),
+                      msg: 'ยืนยันรหัสผ่านไม่ตรงกัน'
+                    }"
+                  ></app-textbox>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <app-textbox
+                    [(ngModel)]="usr.firstName"
+                    formControlName="firstName"
+                    [label]="'ชื่อ'"
+                    [placeholder]="'ชื่อ'"
+                    [validate]="{
+                      invalid: (registerForm.controls.firstName.invalid && usr.firstName),
+                      msg: 'กรุณาระบุชื่อ'
+                    }"
+                  ></app-textbox>
+                </div>
+                <div class="col-md-6">
+                  <app-textbox
+                    [(ngModel)]="usr.lastName"
+                    formControlName="lastName"
+                    [label]="'นามสกุล'"
+                    [placeholder]="'นามสกุล'"
+                    [validate]="{
+                      invalid: (registerForm.controls.lastName.invalid && usr.lastName),
+                      msg: 'กรุณาระบุนามสกุล'
+                    }"
+                  ></app-textbox>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <app-textbox
+                    [(ngModel)]="usr.birthDay"
+                    formControlName="birthDay"
+                    [label]="'วันเกิด'"
+                    [placeholder]="'วันเกิด'"
+                    [validate]="{
+                      invalid: (registerForm.controls.birthDay.invalid && usr.birthDay),
+                      msg: 'กรุณาระบุวันเกิด'
+                    }"
+                  ></app-textbox>
+                </div>
+                <div class="col-md-6">
+                  <app-textbox
+                    [(ngModel)]="usr.age"
+                    [label]="'อายุ'"
+                    formControlName="age"
+                    [placeholder]="'อายุ'"
+                    [validate]="{
+                      invalid: (registerForm.controls.age.invalid && usr.age),
+                      msg: 'กรุณาระบุอายุ'
+                    }"
+                  ></app-textbox>
+                </div>
+              </div>
+              <app-button class="btn-normal"
+                type="submit"
+                (click)="doRegister(registerForm)"
+                [label]="'สมัครสมาชิก'"
+              ></app-button>
+          </form>
+      </div>
+    <!-- </div>-->
+  </div>
+    <!-- <span class="fa">&#xf015;</span> -->
+<!-- </div> -->

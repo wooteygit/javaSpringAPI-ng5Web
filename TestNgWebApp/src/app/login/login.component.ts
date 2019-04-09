@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { HttpxService } from '../shared-services/httpx.service';
 import { ExceptionModel } from '../shared-models/exception.model';
 import { StorageService } from '../shared-services/storage.service';
-
+import { CenterService } from '../shared-services/center.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,12 @@ export class LoginComponent implements OnInit {
 
   userLogin: UserLoginModel = new UserLoginModel();
 
-  constructor(public auth: HttpxService, private router: Router, private storge: StorageService) { }
+  constructor(public auth: HttpxService, private router: Router, private storge: StorageService,
+    private center: CenterService
+  )
+  {
+    this.center.setTitle = 'เข้าสู่ระบบ';
+  }
 
   ngOnInit() {
   }

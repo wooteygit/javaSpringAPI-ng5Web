@@ -1,15 +1,14 @@
 export class UserModel{
-    UserID: number;
-    UserName: string;
-    Password: string;
-    ConfirmPassword: string;
-    FirstName: string;
-    LastName: string;
-    Age: number;
-    BirthDay: string;    
-    Mobile: string;
-    Email: string;
-    UserTypeID: number;
-    Address: string;
-    Remark: string;
+    userID: number;
+    userName: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    age: number;
+    birthDay: string;
+    mobile: string;
+    email: string;
+    userTypeID: number;
+    address: string;
+    remark: string;
 }

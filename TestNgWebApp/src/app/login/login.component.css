@@ -1,5 +1,7 @@
 @import "../styles/placeholder.amin.css";
 @import "../styles/them-color.css";
+
 .layout-login {
     width: 500px;
+    margin-top: 30px;
 }
