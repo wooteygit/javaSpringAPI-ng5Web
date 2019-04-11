@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   sticky: any;
 
   constructor(private scrollDispatcher: ScrollDispatcher, private router: Router, private center: CenterService) {
-
+    this.center.setFullName = '555';
   }
 
   ngOnInit(): void{

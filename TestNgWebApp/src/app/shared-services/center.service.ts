@@ -5,6 +5,7 @@ export class CenterService {
 
   title: string;
   formID: string;
+  fullName: string;
 
   constructor() { }
 
@@ -22,5 +23,13 @@ export class CenterService {
 
   public get getFormID(): string {
     return this.formID;
+  }
+
+  public set setFullName(str: string) {
+    this.fullName = str;
+  }
+
+  public get getFullName(): string {
+    return this.fullName;
   }
 }
