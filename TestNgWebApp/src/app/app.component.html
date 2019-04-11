@@ -1,10 +1,12 @@
 <div class="main" #mainBody>
     <div class="header">
-        <button class="non-bg" (click)="gotoNewPage(1)"><i class="fa">&#xf090; </i> เข้าสู่ระบบ</button>
-        <label>|</label>
-        <button class="non-bg" (click)="gotoNewPage(2)"><i class="fa">&#xf2be; </i> สมัครสมาชิก</button>
-        <label>|</label>
-        <button class="non-bg" (click)="gotoNewPage(3)"><i class="fa">&#xf08b; </i> ออกจากระบบ</button>
+        <div class="menu-header">
+            <button class="non-bg" (click)="gotoNewPage(1)"><i class="fa">&#xf090; </i> เข้าสู่ระบบ</button>
+            <label>|</label>
+            <button class="non-bg" (click)="gotoNewPage(2)"><i class="fa">&#xf2be; </i> สมัครสมาชิก</button>
+            <label>|</label>
+            <button class="non-bg" (click)="gotoNewPage(3)"><i class="fa">&#xf08b; </i> ออกจากระบบ</button>
+        </div>
     </div>
     <div #navbar>
         <mat-toolbar class="them-color text-color-white">

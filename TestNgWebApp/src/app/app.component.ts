@@ -36,12 +36,15 @@ export class AppComponent implements OnInit {
   ngAfterViewInit(): void{
     if(this.navbar){
       this.sticky = this.navbar.nativeElement.offsetTop;
+      console.log(window.pageYOffset+', '+this.sticky);
       this.scrollDispatcher.scrolled().subscribe((x) => {
+        console.log(window.pageYOffset+', '+this.sticky);
         if(this.sticky) {
           if(window.pageYOffset >= this.sticky && !this.navbar.nativeElement.classList.contains('sticky')){
             console.log(window.pageYOffset+', '+this.sticky);
             this.navbar.nativeElement.classList.add('sticky');
           } else {
+            console.log(window.pageYOffset+', '+this.sticky);
             this.navbar.nativeElement.classList.remove('sticky');
           }
         }
