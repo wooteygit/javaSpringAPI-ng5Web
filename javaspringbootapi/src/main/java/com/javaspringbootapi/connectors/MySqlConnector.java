@@ -5,12 +5,17 @@
  */
 package com.javaspringbootapi.connectors;
 
+import com.javaspringbootapi.models.ConfigPropertiesModel;
+import org.springframework.beans.factory.annotation.Autowired;
+
 /**
  *
  * @author senateideapad320-1
  */
 public class MySqlConnector {
     private static MySqlConnector instance;
+    @Autowired
+    private ConfigPropertiesModel config;
     
     private MySqlConnector(){}
     
@@ -20,4 +25,5 @@ public class MySqlConnector {
         }
         return instance;
     }
+    
 }

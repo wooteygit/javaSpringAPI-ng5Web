@@ -5,9 +5,6 @@
  */
 package com.javaspringbootapi.controllers;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -23,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @EnableAutoConfiguration
 public class AppSetingController {
-    
+        
     @RequestMapping(method = RequestMethod.GET, value="/", produces = "text/html; charset=UTF-8")
     @ResponseBody
     public String document(@RequestHeader(name = "auth_key", required = true) String auth_key) {
@@ -42,7 +39,7 @@ public class AppSetingController {
     public String version() {
         String html = "";
         try{
-            return "1.0.0";
+            return "1.0.1";
         }
         catch(Exception ex){
             return ex.getMessage();
