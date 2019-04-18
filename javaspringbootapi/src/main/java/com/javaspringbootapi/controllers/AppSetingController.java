@@ -6,9 +6,11 @@
 package com.javaspringbootapi.controllers;
 
 import com.javaspringbootapi.connectors.MySqlConnector;
+import com.javaspringbootapi.models.ConfigPropertiesModel;
 import com.javaspringbootapi.models.ProcedureOutputModel;
 import java.util.ArrayList;
 import java.util.Arrays;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -25,7 +27,8 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableAutoConfiguration
 public class AppSetingController {
     
-    private MySqlConnector mysql;
+    @Autowired
+    private ConfigPropertiesModel config;
         
     @RequestMapping(method = RequestMethod.GET, value="/", produces = "text/html; charset=UTF-8")
     @ResponseBody
@@ -45,7 +48,17 @@ public class AppSetingController {
     public String version() {
         String html = "";
         try{
-            ProcedureOutputModel ou = mysql.I().CallProcedure("UP_MNG_USER", (ArrayList<String>)Arrays.asList("null", "null", "null", "null", "null", "null", "null"));
+            html = config.getHostName();
+            ArrayList<String> arr = new ArrayList<String>();
+            arr.add("null");
+            arr.add("null");
+            arr.add("null");
+            arr.add("null");
+            arr.add("null");
+            arr.add("null");
+            arr.add("null");
+            
+            ProcedureOutputModel ou = MySqlConnector.I().CallProcedure("UP_MNG_USER", arr);
             return "1.0.1"+ou.getProcessErrorMng();
         }
         catch(Exception ex){

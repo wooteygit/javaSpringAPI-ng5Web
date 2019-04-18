@@ -10,6 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
 
 /**
  *
@@ -19,7 +20,7 @@ import org.springframework.core.env.Environment;
 public class ConfigPropertiesModel {
     
     private String hostName;
-    private int port;
+    private String port;
     private String databaseName;
     private String userName;
     private String password;
@@ -32,11 +33,11 @@ public class ConfigPropertiesModel {
         this.hostName = hostName;
     }
 
-    public int getPort() {
+    public String getPort() {
         return port;
     }
 
-    public void setPort(int port) {
+    public void setPort(String port) {
         this.port = port;
     }
 
