@@ -20,6 +20,9 @@ public class ConfigPropertiesModel {
     
     private String hostName;
     private int port;
+    private String databaseName;
+    private String userName;
+    private String password;
 
     public String getHostName() {
         return hostName;
@@ -35,6 +38,30 @@ public class ConfigPropertiesModel {
 
     public void setPort(int port) {
         this.port = port;
+    }
+
+    public String getDatabaseName() {
+        return databaseName;
+    }
+
+    public void setDatabaseName(String databaseName) {
+        this.databaseName = databaseName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
     
 }

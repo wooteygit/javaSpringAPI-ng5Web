@@ -12,39 +12,26 @@ export class AppComponent implements OnInit {
 
   @ViewChild('navbar') navbar: ElementRef;
   @ViewChild('contentBody') contentBody: ElementRef;
-  @ViewChild('mainBody') mainBody: ElementRef;
 
   title: String = 'หน้าหลัก';
   sticky: any;
 
-  constructor(private scrollDispatcher: ScrollDispatcher, private router: Router, private center: CenterService) {
-    this.center.setFullName = '555';
+  constructor(private scrollDispatcher: ScrollDispatcher, private router: Router, public center: CenterService
+  ) {
+
   }
 
-  ngOnInit(): void{
-    // this.router.events.subscribe((event: Event)=>{
-    //   if (event instanceof NavigationStart) {
-    //     if(event.url == '/login'){
-    //       this.isLogin = true;
-    //     }else{
-    //       this.isLogin = false;
-    //     }
-    //   }
-    // });
-  }
+  ngOnInit(): void { }
 
-  ngAfterViewInit(): void{
+  ngAfterViewInit(): void {
     if(this.navbar){
       this.sticky = this.navbar.nativeElement.offsetTop;
-      console.log(window.pageYOffset+', '+this.sticky);
-      this.scrollDispatcher.scrolled().subscribe((x) => {
-        console.log(window.pageYOffset+', '+this.sticky);
+      this.scrollDispatcher.scrolled().subscribe(x => {
+        console.log(x);
         if(this.sticky) {
-          if(window.pageYOffset >= this.sticky && !this.navbar.nativeElement.classList.contains('sticky')){
-            console.log(window.pageYOffset+', '+this.sticky);
+          if(window.pageYOffset >= this.sticky ){
             this.navbar.nativeElement.classList.add('sticky');
           } else {
-            console.log(window.pageYOffset+', '+this.sticky);
             this.navbar.nativeElement.classList.remove('sticky');
           }
         }

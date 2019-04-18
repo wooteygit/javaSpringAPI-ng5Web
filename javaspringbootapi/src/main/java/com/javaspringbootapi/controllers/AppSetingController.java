@@ -5,6 +5,10 @@
  */
 package com.javaspringbootapi.controllers;
 
+import com.javaspringbootapi.connectors.MySqlConnector;
+import com.javaspringbootapi.models.ProcedureOutputModel;
+import java.util.ArrayList;
+import java.util.Arrays;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -20,6 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @EnableAutoConfiguration
 public class AppSetingController {
+    
+    private MySqlConnector mysql;
         
     @RequestMapping(method = RequestMethod.GET, value="/", produces = "text/html; charset=UTF-8")
     @ResponseBody
@@ -39,7 +45,8 @@ public class AppSetingController {
     public String version() {
         String html = "";
         try{
-            return "1.0.1";
+            ProcedureOutputModel ou = mysql.I().CallProcedure("UP_MNG_USER", (ArrayList<String>)Arrays.asList("null", "null", "null", "null", "null", "null", "null"));
+            return "1.0.1"+ou.getProcessErrorMng();
         }
         catch(Exception ex){
             return ex.getMessage();

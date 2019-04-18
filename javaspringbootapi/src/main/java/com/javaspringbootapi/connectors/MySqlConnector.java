@@ -6,7 +6,14 @@
 package com.javaspringbootapi.connectors;
 
 import com.javaspringbootapi.models.ConfigPropertiesModel;
+import com.javaspringbootapi.models.ProcedureOutputModel;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 /**
  *
@@ -14,16 +21,62 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class MySqlConnector {
     private static MySqlConnector instance;
+    
     @Autowired
     private ConfigPropertiesModel config;
     
-    private MySqlConnector(){}
+    private DriverManagerDataSource ds;
+    
+    private MySqlConnector(){
+        setDriver();
+    }
+    
+    private void setDriver(){
+        ds = new DriverManagerDataSource();
+        ds.setDriverClassName("com.mysql.jdbc.Driver");
+	ds.setUrl("jdbc:mysql://"+config.getHostName()+":"+config.getPort()+"/"+config.getDatabaseName());
+	ds.setUsername(config.getUserName());
+	ds.setPassword(config.getPassword());
+    }
     
     public MySqlConnector I(){
         if(instance == null){
             instance = new MySqlConnector();
         }
         return instance;
+    }
+    
+    public ProcedureOutputModel CallProcedure(String procedureName, ArrayList<String>paramIn){
+        try{
+            if(this.ds == null){
+                setDriver();
+            }
+            String setParam = "", 
+                setCall = "CALL `"+procedureName+"`(", 
+                setSelect = "SELECT @o1 AS `o_PROCESS_STATUS`, @o2 AS `o_PROCESS_ERROR_MSG`;",
+                sql = "";
+            
+            for(int i = 0;i < paramIn.size(); i++){
+                setParam += "SET @p"+i+"='"+paramIn.get(i)+"';";
+                setCall += "@p"+i+",";                
+            }
+            setCall += "@o1, @o2);";
+            sql = setParam + setCall + setSelect;
+            JdbcTemplate jdbcTemplate = new JdbcTemplate(ds);
+            ProcedureOutputModel output = (ProcedureOutputModel) jdbcTemplate.queryForObject(sql, new RowMapper(){
+                @Override
+		public ProcedureOutputModel mapRow(ResultSet rs, int rowNum)throws SQLException {
+                    ProcedureOutputModel out = new ProcedureOutputModel();
+                    out.setProcessStatus(rs.getInt("o_PROCESS_STATUS"));
+                    out.setProcessErrorMng(rs.getString("o_PROCESS_ERROR_MSG"));
+                    return out;
+		}
+            });
+            
+            return output;
+        }catch(Exception ex){
+            throw ex;
+        }
     }
     
 }
