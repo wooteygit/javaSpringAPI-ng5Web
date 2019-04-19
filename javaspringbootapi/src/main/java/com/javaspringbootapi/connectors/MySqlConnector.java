@@ -30,15 +30,22 @@ public class MySqlConnector {
     private DriverManagerDataSource ds;
     
     private MySqlConnector(){
-        setDriver();
     }
     
-    private void setDriver(){
-        ds = new DriverManagerDataSource();
-        ds.setDriverClassName("com.mysql.jdbc.Driver");
-	ds.setUrl("jdbc:mysql://"+config.getHostName()+":"+config.getPort()+"/"+config.getDatabaseName());
-        ds.setUsername(config.getUserName());
-	ds.setPassword(config.getPassword());
+    public JdbcTemplate getJdbcTemplate(ConfigPropertiesModel config){
+        try{
+            DriverManagerDataSource ds = new DriverManagerDataSource();
+            ds.setDriverClassName("com.mysql.jdbc.Driver");
+            ds.setUrl("jdbc:mysql://"+config.getHostName()+":"+config.getPort()+"/"+config.getDatabaseName());
+            ds.setUsername(config.getUserName());
+            ds.setPassword(config.getPassword());
+            JdbcTemplate jdbcTemplate = new JdbcTemplate(ds);
+            
+            return jdbcTemplate;
+        }catch(Exception ex){
+            throw ex;
+        }
+        
     }
     
     public static MySqlConnector I(){
@@ -48,11 +55,8 @@ public class MySqlConnector {
         return instance;
     }
     
-    public ProcedureOutputModel CallProcedure(String procedureName, ArrayList<String>paramIn){
+    public ProcedureOutputModel CallProcedure(JdbcTemplate jdbcTemplate, String procedureName, ArrayList<String>paramIn){
         try{
-            if(this.ds == null){
-                setDriver();
-            }
             String setParam = "", 
                 setCall = "CALL `"+procedureName+"`(", 
                 setSelect = "SELECT @o1 AS `o_PROCESS_STATUS`, @o2 AS `o_PROCESS_ERROR_MSG`;",
@@ -64,8 +68,7 @@ public class MySqlConnector {
             }
             setCall += "@o1, @o2);";
             sql = setParam + setCall + setSelect;
-            JdbcTemplate jdbcTemplate = new JdbcTemplate(ds);
-            ProcedureOutputModel output = (ProcedureOutputModel) jdbcTemplate.queryForObject(sql, new RowMapper(){
+            ProcedureOutputModel output = (ProcedureOutputModel) jdbcTemplate.queryForObject("SELECT 1 AS `o_PROCESS_STATUS`, 2 AS `o_PROCESS_ERROR_MSG`", new RowMapper(){
                 @Override
 		public ProcedureOutputModel mapRow(ResultSet rs, int rowNum)throws SQLException {
                     ProcedureOutputModel out = new ProcedureOutputModel();

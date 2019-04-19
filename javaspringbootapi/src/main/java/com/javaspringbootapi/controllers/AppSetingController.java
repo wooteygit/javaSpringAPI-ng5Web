@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,8 +58,9 @@ public class AppSetingController {
             arr.add("null");
             arr.add("null");
             arr.add("null");
-            
-            ProcedureOutputModel ou = MySqlConnector.I().CallProcedure("UP_MNG_USER", arr);
+            arr.add("null");
+            JdbcTemplate jdbcTemplate = MySqlConnector.I().getJdbcTemplate(config);
+            ProcedureOutputModel ou = MySqlConnector.I().CallProcedure(jdbcTemplate, "UP_MNG_USER", arr);
             return "1.0.1"+ou.getProcessErrorMng();
         }
         catch(Exception ex){

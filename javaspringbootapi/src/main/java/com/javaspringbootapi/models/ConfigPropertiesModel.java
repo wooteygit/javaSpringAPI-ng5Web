@@ -24,6 +24,8 @@ public class ConfigPropertiesModel {
     private String databaseName;
     private String userName;
     private String password;
+    
+    private ConfigPropertiesModel(){}
 
     public String getHostName() {
         return hostName;
