@@ -1,3 +1,7 @@
-<p>
-  datetime works!
-</p>
+<div class="row">
+  <div [class]="'col-md-12  form-group '+((validate && validate.invalid)? 'has-error' : value? 'has-success':'')">
+    <label class="control-label" for="date" for="{{center.getFormID+'-'+ctrID}}">{{label}}</label>
+    <input type="date" id="{{center.getFormID+'-'+ctrID}}" class="form-control" [(ngModel)]="value" (ngModelChange)="updateChanges()" [placeholder]="placeholder" (change)="keyChange($event)" [readonly]="readonly" [maxlength]="maxlength" [required]="isRequest">
+    <div *ngIf="validate && validate.invalid">{{validate.msg}}</div>
+  </div>
+</div>
