@@ -10,10 +10,14 @@ import com.javaspringbootapi.models.ProcedureOutputModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 /**
@@ -24,28 +28,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 public class MySqlConnector {
     private static MySqlConnector instance;
     
-    @Autowired
-    private ConfigPropertiesModel config;
-    
-    private DriverManagerDataSource ds;
-    
     private MySqlConnector(){
-    }
-    
-    public JdbcTemplate getJdbcTemplate(ConfigPropertiesModel config){
-        try{
-            DriverManagerDataSource ds = new DriverManagerDataSource();
-            ds.setDriverClassName("com.mysql.jdbc.Driver");
-            ds.setUrl("jdbc:mysql://"+config.getHostName()+":"+config.getPort()+"/"+config.getDatabaseName());
-            ds.setUsername(config.getUserName());
-            ds.setPassword(config.getPassword());
-            JdbcTemplate jdbcTemplate = new JdbcTemplate(ds);
-            
-            return jdbcTemplate;
-        }catch(Exception ex){
-            throw ex;
-        }
-        
     }
     
     public static MySqlConnector I(){
@@ -53,6 +36,39 @@ public class MySqlConnector {
             instance = new MySqlConnector();
         }
         return instance;
+    }
+    
+    public DriverManagerDataSource getDriverManagerDataSource(ConfigPropertiesModel config){
+        try{
+            DriverManagerDataSource dataSource = new DriverManagerDataSource();
+            dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+            dataSource.setUrl("jdbc:mysql://"+config.getHostName()+":"+config.getPort()+"/"+config.getDatabaseName());
+            dataSource.setUsername(config.getUserName());
+            dataSource.setPassword(config.getPassword());
+            
+            return dataSource;
+        }catch(Exception ex){
+            throw ex;
+        }
+        
+    }
+    
+    public Map<String, Object> CallSP(DriverManagerDataSource dataSource, String procedureName, Map<String, ?> paramIn){
+        try{
+            ProcedureOutputModel output = new ProcedureOutputModel();
+            SimpleJdbcCall jdbcCall = new SimpleJdbcCall(dataSource).withProcedureName(procedureName);
+            MapSqlParameterSource param = new MapSqlParameterSource();
+            
+            paramIn.forEach((k,v)->{
+                param.addValue(k, v);
+            });
+            Map<String, Object> out = jdbcCall.execute(param);
+            
+            return out;
+            
+        }catch(Exception ex){
+            throw ex;
+        }
     }
     
     public ProcedureOutputModel CallProcedure(JdbcTemplate jdbcTemplate, String procedureName, ArrayList<String>paramIn){
